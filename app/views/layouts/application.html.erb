@@ -21,6 +21,9 @@
         </div>
         <div class="navbar-nav ml-auto">
           <% if user_signed_in? %>
+            <% if current_user.admin  %>
+              <%= link_to "Admin Panel", rails_admin_path, class: "nav-item nav-link" %>
+            <%end%>
             <%= link_to "LogOut", signout_path, method: :delete, class: "nav-item nav-link" %>
           <% else %>
             <%= link_to "Login", signin_path, class: "nav-item nav-link" %>
