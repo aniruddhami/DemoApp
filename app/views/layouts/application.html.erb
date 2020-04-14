@@ -8,7 +8,7 @@
   </head>
   <body>
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-2">
       <%= link_to "One Month Rails", root_path, class: "navbar-brand" %>
       <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
@@ -29,18 +29,18 @@
         </div>
       </div>
     </nav>
-    <!--  flash message -->
-    <% flash.each do | name, message | %>
-      <div class="alert alert-info #{name} alert-dismissible fade show" role="alert">
-        <%= message %>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-    <% end %>
-    <!--  flash message -->
     <!-- Page Content -->
-    <div class="container-fluid">
+    <div class="container-fluid ">
+      <!--  flash message -->
+      <% flash.each do | name, message | %>
+        <div class="alert alert-info #{name} alert-dismissible fade show" role="alert">
+          <%= message %>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <% end %>
+      <!--  flash message -->
       <%= yield %>
     </div>
     <!-- Footer -->
