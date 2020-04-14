@@ -3,30 +3,46 @@
   <head>
     <title>One Month Rails Project</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-toggleable-sm navbar-inverse bg-inverse">
-      <div class="container">
-        <%= link_to "One Month Rails", root_path, class: "navbar-brand" %>
-        <ul class="nav nav-pills float-right">
-          <li class="nav-item"><%= link_to "Home", root_path, class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "About", about_path, class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "Contact", contactus_path, class: "nav-link" %></li>
-        </ul>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <%= link_to "One Month Rails", root_path, class: "navbar-brand" %>
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav">
+          <%= link_to "Home", root_path, class: "nav-item nav-link" %>
+          <%= link_to "About", about_path, class: "nav-item nav-link" %>
+          <%= link_to "Contact", contactus_path, class: "nav-item nav-link" %>
+        </div>
+        <div class="navbar-nav ml-auto">
+          <% if user_signed_in? %>
+            <%= link_to "LogOut", signout_path, method: :delete, class: "nav-item nav-link" %>
+          <% else %>
+            <%= link_to "Login", signin_path, class: "nav-item nav-link" %>
+            <%= link_to "SignUp", signup_path, class: "nav-item nav-link" %>
+          <% end %>
+        </div>
       </div>
     </nav>
-
+    <!--  flash message -->
+    <% flash.each do | name, message | %>
+      <div class="alert alert-info #{name} alert-dismissible fade show" role="alert">
+        <%= message %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <% end %>
+    <!--  flash message -->
     <!-- Page Content -->
     <div class="container-fluid">
       <%= yield %>
     </div>
-    
     <!-- Footer -->
     <footer class="small text-muted">
       <div class="container">
@@ -36,6 +52,5 @@
         </center>
       </div>
     </footer>
-
   </body>
 </html>
