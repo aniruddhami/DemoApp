@@ -3,6 +3,8 @@
   <head>
     <title>One Month Rails Project</title>
     <%= csrf_meta_tags %>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -26,6 +28,7 @@
             <% if current_user.admin  %>
               <%= link_to "Admin Panel", rails_admin_path, class: "nav-item nav-link" %>
             <%end%>
+            <%= link_to "Profile", profile_path, class: "nav-item nav-link" %>
             <%= link_to "LogOut", signout_path, method: :delete, class: "nav-item nav-link" %>
           <% else %>
             <%= link_to "Login", signin_path, class: "nav-item nav-link" %>
@@ -49,10 +52,15 @@
       <%= yield %>
     </div>
     <!-- Footer -->
+    <br>
+    <br>
     <footer class="nav small text-muted footer fixed-bottom navbar-dark bg-dark">
       <div class="container-fluid">
         <p class="text-white  text-center pt-3">© 2016 One Month</p>
       </div>
     </footer>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   </body>
 </html>
