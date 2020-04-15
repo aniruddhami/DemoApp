@@ -1,35 +1,47 @@
 <div class="container">
   <div class="row">
-    <div class="col-6">
-      <h1>Tweets</h1>
+    <div class="col-4">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <% if user_signed_in? %>
+            <h5 class="card-title">Hello <%= current_user.username %></h5>
+            <p class="card-text"><%= current_user.email %></p>
+          <% else %>
+            <h5 class="card-title">Hello Guest</h5>
+            <p class="card-text">Thanks for visiting</p>
+          <% end %>
+        </div>
+      </div>
     </div>
-    <div class="col-6 text-right">
-      <% if user_signed_in? %>
-        <%= link_to 'New Tweet', new_tweet_path, class:"btn btn-primary text-white" %>
-      <% end %>
+    <div class="col-8">
+      <div class="row">
+        <div class="col-6">
+          <h1>Tweets</h1>
+        </div>
+        <div class="col-6 text-right">
+          <% if user_signed_in? %>
+            <%= link_to 'New Tweet', new_tweet_path, class:"btn btn-primary text-white" %>
+          <% end %>
+        </div>
+      </div>
+      <ul class="list-group">
+        <% @tweets.each do |tweet| %>
+          <li onclick="location.href='<%= tweet_path(tweet.id)%>'" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1"><%= tweet.user.email %></h5>
+              <small class="text-muted">3 days ago</small>
+            </div>
+            <p class="mb-1"><%= tweet.content %></p>
+            <small class="text-muted">Donec id elit non mi porta.</small>
+            <p class="text-muted">
+              <%= link_to 'Show', tweet %>
+              <% if tweet.user == current_user %>
+                <%= link_to 'Edit', edit_tweet_path(tweet) %>
+                <%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <% end %></p>
+          </li>
+        <%end%>
+      </ul>
     </div>
   </div>
-  <table class="table">
-    <thead class="thead-inverse">
-      <tr>
-        <th>User</th>
-        <th>Content</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @tweets.each do |tweet| %>
-        <tr>
-          <td><%= tweet.user.email %></td>
-          <td><%= tweet.content %></td>
-          <td><%= link_to 'Show', tweet %></td>
-          <% if tweet.user == current_user %>
-            <td><%= link_to 'Edit', edit_tweet_path(tweet) %></td>
-            <td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <% end %>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <br>
 </div>

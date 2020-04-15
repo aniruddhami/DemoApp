@@ -7,6 +7,7 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 //= require popper
 //= require bootstrap-sprockets
+//= require bootstrapValidator.min
 require("@rails/activestorage").start()
 require("channels")
 

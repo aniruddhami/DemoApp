@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_14_121618) do
+ActiveRecord::Schema.define(version: 2020_04_15_062543) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 2020_04_14_121618) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "items", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "title"
+    t.string "url"
+    t.text "text"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_items_on_user_id"
+  end
+
   create_table "tweets", force: :cascade do |t|
     t.integer "user_id", null: false
     t.text "content"
@@ -32,8 +42,20 @@ ActiveRecord::Schema.define(version: 2020_04_14_121618) do
     t.index ["user_id"], name: "index_tweets_on_user_id"
   end
 
-# Could not dump table "users" because of following StandardError
-#   Unknown type 'bool' for column 'admin'
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "username", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "admin"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
 
+  add_foreign_key "items", "users"
   add_foreign_key "tweets", "users"
 end
