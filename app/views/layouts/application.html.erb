@@ -8,7 +8,7 @@
   </head>
   <body>
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-2">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-2 sticky-top">
       <%= link_to "One Month Rails", root_path, class: "navbar-brand" %>
       <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
@@ -48,12 +48,9 @@
       <%= yield %>
     </div>
     <!-- Footer -->
-    <footer class="small text-muted">
-      <div class="container">
-        <hr>
-        <center>
-          <p>© 2016 One Month</p>
-        </center>
+    <footer class="nav small text-muted footer fixed-bottom navbar-dark bg-dark">
+      <div class="container-fluid">
+        <p class="text-white  text-center pt-3">© 2016 One Month</p>
       </div>
     </footer>
   </body>

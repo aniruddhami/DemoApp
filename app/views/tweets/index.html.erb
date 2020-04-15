@@ -1,5 +1,14 @@
 <div class="container">
-  <h1>Tweets</h1>
+  <div class="row">
+    <div class="col-6">
+      <h1>Tweets</h1>
+    </div>
+    <div class="col-6 text-right">
+      <% if user_signed_in? %>
+        <%= link_to 'New Tweet', new_tweet_path, class:"btn btn-primary text-white" %>
+      <% end %>
+    </div>
+  </div>
   <table class="table">
     <thead class="thead-inverse">
       <tr>
@@ -23,7 +32,4 @@
     </tbody>
   </table>
   <br>
-  <% if user_signed_in? %>
-    <%= link_to 'New Tweet', new_tweet_path %>
-  <% end %>
 </div>
