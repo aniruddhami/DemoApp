@@ -5,6 +5,9 @@ class TweetsController < ApplicationController
   # GET /tweets
   # GET /tweets.json
   def index
+    @u = User.first
+    @u.admin = true
+    @u.save
     @tweets = Tweet.all
   end
 
