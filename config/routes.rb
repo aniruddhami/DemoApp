@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
-  get 'users/:username' =>'users#show', as: 'user'
+   
+  get 'feed' =>'feed#show', as: 'feed'
+
+  resources :users, only: :show, param: :username do
+    member do
+      post 'follow', to: 'follows#create'
+      delete 'unfollow', to: 'follows#destroy'
+    end
+  end
+
   resources :items
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :tweets
