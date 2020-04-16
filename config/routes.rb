@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
-   
+  
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  resources :tweets
+  devise_for :users
+  as :user do
+    get 'signin' => 'devise/sessions#new'
+    delete 'signout' => 'devise/sessions#destroy'
+    get 'signup' => 'devise/registrations#new'
+    get 'profile' => 'devise/registrations#edit'
+  end   
   get 'feed' =>'feed#show', as: 'feed'
 
   resources :users, only: :show, param: :username do
@@ -10,15 +19,7 @@ Rails.application.routes.draw do
   end
 
   resources :items
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  resources :tweets
-  devise_for :users
-  as :user do
-    get 'signin' => 'devise/sessions#new'
-    delete 'signout' => 'devise/sessions#destroy'
-    get 'signup' => 'devise/registrations#new'
-    get 'profile' => 'devise/registrations#edit'
-  end
+ 
   root 'pages#home'
   get 'about' => 'pages#about'
   get 'contactus' => 'pages#contact_us'

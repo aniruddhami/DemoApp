@@ -15,7 +15,10 @@
             <% end %>
           <% else %>
             <h5 class="card-title">Hello Guest</h5>
-            <p class="card-text">Thanks for visiting</p>
+            <p class="card-text">
+              <%= link_to "SignIn", signin_path %> |
+              <%= link_to "SignUp", signup_path %>
+            </p>
           <% end %>
         </div>
       </div>
