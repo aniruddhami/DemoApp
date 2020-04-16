@@ -1,12 +1,14 @@
 <h1>Items</h1>
-<table class="table">
-  <thead class="thead-inverse">
+<table id="example" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+  <thead>
     <tr>
       <th>User</th>
       <th>Title</th>
       <th>Url</th>
       <th>Text</th>
-      <th colspan="3"></th>
+      <th>Vote</th>
+      <th>Give Vote</th>
+      <th >cxv</th>
     </tr>
   </thead>
   <tbody>
@@ -16,11 +18,19 @@
         <td><%= item.title %></td>
         <td><%= item.url %></td>
         <td><%= item.text %></td>
-        <td><%= link_to 'Show', item %></td>
-        <% if item.user == current_user %>
-          <td><%= link_to 'Edit', edit_item_path(item) %></td>
-          <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
+        <td><%= item.votes_for.up.size %></td>
+        <% if current_user.voted_up_on?item %>
+          <td><%= link_to 'Unvote', unvote_item_path(item), method: :delete %></td>
+        <% else %>
+          <td><%= link_to 'Vote', vote_item_path(item), method: :post %></td>
+        <% end %>        
+        <td>
+          <%= link_to 'Show', item %>
+          <% if item.user == current_user %>
+            <%= link_to 'Edit', edit_item_path(item) %>
+            <%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

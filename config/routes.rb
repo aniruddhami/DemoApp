@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :tweets
   devise_for :users
@@ -18,7 +18,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :items
+  resources :items do
+    member do
+      post 'vote', to: 'votes#create'
+      delete 'unvote', to: 'votes#destroy'
+    end
+  end
  
   root 'pages#home'
   get 'about' => 'pages#about'
