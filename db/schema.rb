@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_16_124329) do
+ActiveRecord::Schema.define(version: 2020_04_17_050123) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -53,6 +53,10 @@ ActiveRecord::Schema.define(version: 2020_04_16_124329) do
     t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
     t.index ["user_id"], name: "index_tweets_on_user_id"
   end
 
