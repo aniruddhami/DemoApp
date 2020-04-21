@@ -34,3 +34,7 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+#ignore public system
+
+/public/system

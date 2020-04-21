@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :galleries
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :tweets
   devise_for :users

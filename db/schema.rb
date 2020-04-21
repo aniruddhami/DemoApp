@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_17_050123) do
+ActiveRecord::Schema.define(version: 2020_04_20_123905) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -38,6 +38,13 @@ ActiveRecord::Schema.define(version: 2020_04_17_050123) do
     t.index ["follower_type", "follower_id"], name: "index_follows_on_follower_type_and_follower_id"
   end
 
+  create_table "galleries", force: :cascade do |t|
+    t.string "name"
+    t.text "discription"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "items", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "title"
@@ -46,6 +53,17 @@ ActiveRecord::Schema.define(version: 2020_04_17_050123) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_items_on_user_id"
+  end
+
+  create_table "pictures", force: :cascade do |t|
+    t.integer "gallery_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "url_file_name"
+    t.string "url_content_type"
+    t.integer "url_file_size"
+    t.datetime "url_updated_at"
+    t.index ["gallery_id"], name: "index_pictures_on_gallery_id"
   end
 
   create_table "tweets", force: :cascade do |t|
@@ -93,5 +111,6 @@ ActiveRecord::Schema.define(version: 2020_04_17_050123) do
   end
 
   add_foreign_key "items", "users"
+  add_foreign_key "pictures", "galleries"
   add_foreign_key "tweets", "users"
 end

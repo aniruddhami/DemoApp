@@ -1,0 +1,27 @@
+<h1>Galleries</h1>
+
+<table id="example" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Discription</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @galleries.each do |gallery| %>
+      <tr>
+        <td><%= gallery.name %></td>
+        <td><%= gallery.discription %>
+        <td><%= link_to 'Show', gallery %>
+        <%= link_to 'Edit', edit_gallery_path(gallery) %>
+        <%= link_to 'Destroy', gallery, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Gallery', new_gallery_path %>
