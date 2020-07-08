@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Demoitems</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Url</th>
+      <th>Text</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @demoitems.each do |demoitem| %>
+      <tr>
+        <td><%= demoitem.title %></td>
+        <td><%= demoitem.url %></td>
+        <td><%= demoitem.text %></td>
+        <td><%= link_to 'Show', demoitem %></td>
+        <td><%= link_to 'Edit', edit_demoitem_path(demoitem) %></td>
+        <td><%= link_to 'Destroy', demoitem, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Demoitem', new_demoitem_path %>

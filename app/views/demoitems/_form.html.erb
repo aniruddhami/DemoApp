@@ -1,0 +1,32 @@
+<%= form_with(model: demoitem, local: true) do |form| %>
+  <% if demoitem.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(demoitem.errors.count, "error") %> prohibited this demoitem from being saved:</h2>
+
+      <ul>
+        <% demoitem.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :url %>
+    <%= form.text_field :url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :text %>
+    <%= form.text_area :text %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

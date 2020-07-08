@@ -10,7 +10,12 @@ class ItemsController < ApplicationController
   # GET /items/1
   # GET /items/1.json
   def show
-    @item = Item.find(params[:id])
+    @item = Rails.cache.read(params[:id]) 
+    @item = @item[:response] if !@item.blank?
+    if @item.blank?
+      @item = Item.find(params[:id]) 
+      Rails.cache.write(@item.id, {name: @item.id, response: @item}, :expires_in => 120.second)
+    end
   end
 
   # GET /items/new
@@ -30,6 +35,8 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.save
+        Rails.cache.write(@item.id, {name: @item.id, response: @item}, :expires_in => 120.second)
+        # binding.pry
         format.html { redirect_to @item, notice: 'Item was successfully created.' }
         format.json { render :show, status: :created, location: @item }
       else

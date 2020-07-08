@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_20_123905) do
+ActiveRecord::Schema.define(version: 2020_05_06_041957) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,6 +22,14 @@ ActiveRecord::Schema.define(version: 2020_04_20_123905) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "demoitems", force: :cascade do |t|
+    t.string "title"
+    t.string "url"
+    t.text "text"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "follows", force: :cascade do |t|
@@ -53,6 +61,24 @@ ActiveRecord::Schema.define(version: 2020_04_20_123905) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_items_on_user_id"
+  end
+
+  create_table "new_galleries", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "name"
+    t.text "discription"
+    t.string "images"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_new_galleries_on_user_id"
+  end
+
+  create_table "newitems", force: :cascade do |t|
+    t.string "title"
+    t.string "url"
+    t.text "text"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "pictures", force: :cascade do |t|
@@ -111,6 +137,7 @@ ActiveRecord::Schema.define(version: 2020_04_20_123905) do
   end
 
   add_foreign_key "items", "users"
+  add_foreign_key "new_galleries", "users"
   add_foreign_key "pictures", "galleries"
   add_foreign_key "tweets", "users"
 end

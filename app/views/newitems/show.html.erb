@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @newitem.title %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @newitem.url %>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @newitem.text %>
+</p>
+
+<%= link_to 'Edit', edit_newitem_path(@newitem) %> |
+<%= link_to 'Back', newitems_path %>

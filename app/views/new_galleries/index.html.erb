@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>New Galleries</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Name</th>
+      <th>Discription</th>
+      <th>Images</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @new_galleries.each do |new_gallery| %>
+      <tr>
+        <td><%= new_gallery.user_id %></td>
+        <td><%= new_gallery.name %></td>
+        <td><%= new_gallery.discription %></td>
+        <td><%= new_gallery.images %></td>
+        <td><%= link_to 'Show', new_gallery %></td>
+        <td><%= link_to 'Edit', edit_new_gallery_path(new_gallery) %></td>
+        <td><%= link_to 'Destroy', new_gallery, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New New Gallery', new_new_gallery_path %>

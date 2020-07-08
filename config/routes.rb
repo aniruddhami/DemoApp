@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  resources :new_galleries
+  resources :demoitems
+  resources :newitems
   resources :galleries
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :tweets

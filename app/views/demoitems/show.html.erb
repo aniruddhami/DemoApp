@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @demoitem.title %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @demoitem.url %>
+</p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @demoitem.text %>
+</p>
+
+<%= link_to 'Edit', edit_demoitem_path(@demoitem) %> |
+<%= link_to 'Back', demoitems_path %>

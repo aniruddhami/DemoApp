@@ -1,0 +1,2 @@
+module DemoitemsHelper
+end
